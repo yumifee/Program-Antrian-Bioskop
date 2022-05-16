@@ -15,7 +15,7 @@ int main (){
 		cout << "บอออออออออออออออออออออออออออออออออออออออออออออออออบ " << endl;
 		cout << "บ1. Pesan Tiket                                   บ"  << endl;
 		cout << "บ2. List Film                                     บ" << endl;
-		cout << "บ3. Cek Kursi                                     บ" <<  endl;
+		cout << "บ3. Input Jadwal                                  บ" <<  endl;
 		cout << "บ4. List Jam tayang                               บ"<< endl;
 		cout << "บ5. Keluar                                        บ"<< endl;
 		
@@ -70,7 +70,7 @@ int main (){
 					break;
 				
 			    case 3:
-			    	layar(arrStudio[0]);
+			    	setJadwal(arrStudio);
 //					cout << endl;
 //					cout << endl;
 //					cout << "ษอออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออป " << endl;

@@ -22,6 +22,7 @@ string *film;
 void init(Studio * &arrStudio){
 	arrStudio = new Studio[STUDIO];
 	inputFilm();
+	atexit(exit);
 	for(int i = 0; i < STUDIO; i++){
 		for(int y = 0; y < ROW; y++){
 			for(int x = 0; x < COL; x++){
@@ -33,6 +34,58 @@ void init(Studio * &arrStudio){
 	}
 	
 }
+
+void setJadwal(Studio *arrStudio){
+	time_t t;
+	int film,jam,menit;
+	Jadwal temp;
+	
+	t = time(NULL);
+	temp = gmtime(&t);
+	
+	listFilm();
+	do{
+		cout << "Film :";
+ 		cin >> film;
+		if(film < 1 || film > TFILM){
+			cout << "Film Tidak Ada !";
+			getch();
+			system("cls");
+		} else {
+			break;
+		}
+	}while(true);
+	
+	do{
+		cout << "Jam tayang (0 - 23) : ";
+		cin >> jam;
+		if(jam < 0 || jam > 23){
+			cout << "Format Jam Salah!";
+			getch();
+			system("cls");
+		} else {
+			break;
+		}
+	
+	}while(true);
+	
+	do{
+		cout << "Menit Tayang (0 - 59) :";
+		cin >> menit;
+		if(menit < 0 || menit > 59){
+			cout << "Format Menit Salah!";
+			getch();
+			system("cls");
+		} else{
+			break;
+		}
+	}while(true);
+	temp->tm_hour = jam;
+	temp->tm_min = menit;
+	temp->tm_sec = 0;
+	arrStudio[film - 1].tayang = temp;
+}
+
 
 void inputFilm(){
 	film = new string[TFILM];
@@ -130,7 +183,7 @@ void input(Studio *arrStudio)
 			getch();
 			system("cls");
 		} else {
-			arrStudio[film-1].kursi[(int)bangku[1] - 48 + 1][(int)bangku[0] - 64] = "$";
+			arrStudio[film-1].kursi[(int)bangku[1] - 49][(int)bangku[0] - 64] = "$";
 			arrStudio[film-1].sisaBangku--;
 			arrStudio[film-1].terjual++;
 			system("cls");
@@ -183,5 +236,6 @@ void exit()
     cout << "\n\n Terima kasih!.";
     cout << endl
          << endl;
+    delete film;
     exit(1);
 }
