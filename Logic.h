@@ -1,11 +1,13 @@
 #ifndef Logic_H
 #define Logic_H
 #include <iostream>
+#include "List.h"
 #include <iomanip>
 #include <string>
 #include <algorithm>
 #include <conio.h>
 #include <stdlib.h>
+#include <fstream>
 
 using namespace std;
 
@@ -21,9 +23,16 @@ typedef struct {
 	string kursi[ROW][COL];
 }Studio;
 
+typedef struct {
+	string namaFilm;
+	int jamFilm;
+	int menitFilm;
+	
+}Film;
+
 void init(Studio * &arrStudio);
 void inputFilm();
-void listFilm();
+//void listFilm();
 void layar(Studio studio);
 void input(Studio *arrStudio);
 void exit();
