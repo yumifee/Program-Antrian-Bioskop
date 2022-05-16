@@ -18,10 +18,15 @@ string bangku[ROW][COL]{
     {"9", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**"},
 };
 string *film;
+List listFilm;
+Film *arrFilm;
 
 void init(Studio * &arrStudio){
 	arrStudio = new Studio[STUDIO];
-	inputFilm();
+	arrFilm = new Film[TFILM];
+	CreateList(&listFilm);
+	
+//	inputFilm();
 	for(int i = 0; i < STUDIO; i++){
 		for(int y = 0; y < ROW; y++){
 			for(int x = 0; x < COL; x++){
@@ -29,36 +34,76 @@ void init(Studio * &arrStudio){
 			}
 		}
 		arrStudio[i].sisaBangku = (ROW - 1) * (COL - 1);
-		arrStudio[i].namaFilm = film[i];
+//		arrStudio[i].namaFilm = film[i];
 	}
 	
 }
 
 void inputFilm(){
-	film = new string[TFILM];
-	film[0] = "Doctor Strange : Multiverse Of Madness";
-	film[1] = "KKN";
-	film[2] = "From Deep Within";
+//	film = new string[TFILM];
+//	film[0] = "Doctor Strange : Multiverse Of Madness";
+//	film[1] = "KKN";
+//	film[2] = "From Deep Within";
+
+	int jamFilm;
+	int menitFilm;
+	string namaFilm;
+	address temp;
+	
+	do{
+		cout << "Masukkan Judul Film :";
+ 		cin >> namaFilm;
+			system("cls");
+			break;
+		
+	}while(true);
+	
+	do{
+		cout << "Masukkan Durasi Jam Film : ";
+		cin >> jamFilm;
+		if(jamFilm < 0 || jamFilm > 23){
+			cout << "Format Jam Salah!";
+			getch();
+			system("cls");
+		} else {
+			break;
+		}
+	
+	}while(true);
+	
+	do{
+		cout << "Masukkan Durasi Menit Film :";
+		cin >> menitFilm;
+		if(menitFilm < 0 || menitFilm > 59){
+			cout << "Format Menit Salah!";
+			getch();
+			system("cls");
+		} else{
+			break;
+		}
+	}while(true);
+	InsVLast(&listFilm,namaFilm,jamFilm,menitFilm);
+	
 }
 	
     
-void listFilm(){
-	cout << endl;
-	cout << endl;
-	cout << "ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ» " << endl;
-	cout << "º                                                  SEDANG TAYANG                                                      º" << endl;
-	cout << "º                                    Berikut list film yang tayang pada hari ini                                      º" << endl;
-	cout << "ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼ " << endl;
-	cout << endl;
-	cout << "ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ» " << endl;
-	cout << "º No         Judul Film                                                 Studio                                        º" << endl;
-	cout << "º                                                                                                                     º" <<endl;
-	for(int i = 0; i < TFILM; i++){
-		cout << "º " << setw(11) << left << i+1 << setw(59) << left << film[i] << setw(46)<<left<< i << "º" << endl;
-	}
-	cout << "ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼ " << endl;
-	cout << endl;
-}
+//void listFilm(){
+//	cout << endl;
+//	cout << endl;
+//	cout << "Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ» " << endl;
+//	cout << "Âº                                                  SEDANG TAYANG                                                      Âº" << endl;
+//	cout << "Âº                                    Berikut list film yang tayang pada hari ini                                      Âº" << endl;
+//	cout << "ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼ " << endl;
+//	cout << endl;
+//	cout << "Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ» " << endl;
+//	cout << "Âº No         Judul Film                                                 Studio                                        Âº" << endl;
+//	cout << "Âº                                                                                                                     Âº" <<endl;
+//	for(int i = 0; i < TFILM; i++){
+//		cout << "Âº " << setw(11) << left << i+1 << setw(59) << left << film[i] << setw(46)<<left<< i << "Âº" << endl;
+//	}
+//	cout << "ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼ " << endl;
+//	cout << endl;
+//}
 
 // Memberikan logic pada function layar()
 void layar(Studio studio)
@@ -94,7 +139,7 @@ void input(Studio *arrStudio)
 	int film,pilih;
 	string tipe,bangku,cek;
 	do{
-		listFilm();
+//		listFilm();
 		cout << "Pilih Film :";
 		cin >> film;
 		if(film > TFILM || film < 1){
