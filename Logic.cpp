@@ -150,7 +150,7 @@ void input(Studio *arrStudio)
 	int film,pilih;
 	string tipe,bangku,cek;
 	do{
-//		listFilm();
+		displayFilm();
 		cout << "Pilih Film :";
 		cin >> film;
 		if(film > TFILM || film < 1){
