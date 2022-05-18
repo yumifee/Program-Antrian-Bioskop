@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1652777880 source:d:\kuliah\semester_2\sda\tubessda(main)\tubessda\bioskop.cpp
+	"Logic.h"
+
+1652786080 d:\kuliah\semester_2\sda\tubessda(main)\tubessda\logic.h
+	<iostream>
+	"List.h"
+	<iomanip>
+	<string>
+	<algorithm>
+	<conio.h>
+	<stdlib.h>
+	<fstream>
+
+1652786080 d:\kuliah\semester_2\sda\tubessda(main)\tubessda\list.h
+	<stdio.h>
+	<iostream>
+	"Logic.h"
+
+1652773630 source:d:\kuliah\semester_2\sda\tubessda(main)\tubessda\list.cpp
+	"List.h"
+	<stdio.h>
+	<stdlib.h>
+
+1652830377 source:d:\kuliah\semester_2\sda\tubessda(main)\tubessda\logic.cpp
+	"Logic.h"
+

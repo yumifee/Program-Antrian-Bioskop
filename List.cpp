@@ -1,4 +1,4 @@
-/* 
+/*
 Nama : Panji Judha Fadhilla & Nurul Anisah
 NIM : 211511053 & 211511052
 Kelas : 1B
@@ -15,52 +15,51 @@ bool ListEmpty (List L){
           return false;
         }
 }
-        
+
 void CreateList (List * L){
-	if(ListEmpty){
-     	Point(*L) = NULL;
-	}
+    Point(*L) = Nil;
 }
 
-address Alokasi (infotype X,int jam,int menit){
-	address P;
-	
-	P = (address)malloc(sizeof(ElmtList));
+address Alokasi (infotype X){
+	address P = new ElmtList;
+
 	if(P == Nil){
-		cout << "Alokasi Gagal!";
-		return NULL;
+		system("cls");
+		cout << "Error : Alokasi Gagal!";
+		return P;
 	}
 	Info(P) = X;
-	Jam(P) = jam;
-	Menit(P) = menit;
+//	P->info.namaFilm = X.namaFilm;
+//	P->info.jamFilm = X.jamFilm;
+//	P->info.menitFilm = X.menitFilm;
+
 	Next(P) = Nil;
-	cout << "tes";
 	return P;
 }
 
 void DeAlokasi (address *P){
 	Next(*P) = Nil;
-	free(*P);
+	delete P;
 }
 
 address Search (List L, infotype X){
 	address temp;
-	
+
 	temp = Point(L);
 	while(1){
-		if(Info(temp) == X){
+		if(temp->info.namaFilm == X.namaFilm){
 			return temp;
 		}
 		if(temp == Nil){
 			return Nil;
 		}
 		temp = Next(temp);
-	}	
+	}
 }
 
 bool FSearch (List L, address P){
 	address index;
-	
+
 	index = Point(L);
 	if(P == index){
 		return true;
@@ -69,26 +68,26 @@ bool FSearch (List L, address P){
 		index = Next(index);
 		if(P == index){
 			return true;
-		}		
+		}
 	}while(Next(index) != Nil);
 	return false;
 }
 
 address SearchPrec (List L, infotype X){
 	address P,index;
-	
+
 	P = Point(L);
 	index = Point(L);
-	if(Info(P) == X){
+	if(P->info.namaFilm == X.namaFilm){
 		return Nil;
 	}
 	do {
 		P = Next(P);
-		if(Info(P) == X){
+		if(P->info.namaFilm == X.namaFilm){
 		break;
-		}	
+		}
 	}while(Next(P) != Nil);
-	if(Info(P) != X){
+	if(P->info.namaFilm == X.namaFilm){
 		return Nil;
 	}
 	while(Next(index) != P){
@@ -97,44 +96,46 @@ address SearchPrec (List L, infotype X){
 	return index;
 }
 
-void InsVFirst (List * L, infotype X,int jam,int menit){
+void InsVFirst (List * L, infotype X){
 	address temp;
-	
+
 	if (ListEmpty(*L)){
-		Point(*L) = Alokasi(X,jam,menit);
+		Point(*L) = Alokasi(X);
 	}else {
-		InsertFirst(L,Alokasi(X,jam,menit));
+		InsertFirst(L,Alokasi(X));
 	}
 }
 
-void InsVLast (List * L, infotype X,int jam,int menit){
+void InsVLast (List * L, infotype X){
+	address temp = Alokasi(X);
 	if(ListEmpty(*L)){
-		InsertFirst(L,Alokasi(X,jam,menit));
+		InsertFirst(&(*L),temp);
 	} else{
-		InsertLast(L,Alokasi(X,jam,menit));	
+		InsertLast(&(*L),temp);
 	}
-	
+
 }
 
 
 void DelVFirst (List * L, infotype * X){
 	address temp;
-	
+
 	DelFirst(L,&temp);
 	*X = Info(temp);
-	DeAlokasi(&temp);	
+	DeAlokasi(&temp);
 }
 
 void DelVLast (List * L, infotype * X){
 	address temp;
-	
+
 	DelLast(L,&temp);
 	*X = Info(temp);
 	DeAlokasi(&temp);
-	
+
 }
 
 void InsertFirst (List * L, address P){
+
 	Next(P) = Point(*L);
 	Point(*L) = P;
 }
@@ -152,13 +153,13 @@ void InsertAfter (List * L, address P, address Prec){
 					printf("\nAddress Merupakan Address Terakhir!");
 				} else {
 					Next(P) = Next(Prec);
-					Next(Prec) = P;			
+					Next(Prec) = P;
 				}
 }
 
 void InsertLast (List * L, address P){
 	address index;
-	
+
 	index = Point(*L);
 	while(Next(index) != Nil){
 		index = Next(index);
@@ -169,12 +170,12 @@ void InsertLast (List * L, address P){
 
 void DelFirst (List * L, address * P){
 	List temp;
-	
+
 	*P = Point(*L);
 	if(ListEmpty(*L)){
 		printf("\nList Kosong!");
 	} else if(Next(Point(*L)) != Nil){
-			
+
 			Point(temp) = Point(*L);
 			Point(*L) = Next(Point(*L));
 			Next(Point(temp)) = Nil;
@@ -185,7 +186,7 @@ void DelFirst (List * L, address * P){
 
 void DelP (List * L, infotype X){
 	address temp;
-	
+
 	if(ListEmpty(*L)){
 		printf("\nList Kosong!");
 	}
@@ -195,7 +196,7 @@ void DelP (List * L, infotype X){
 
 void DelLast (List * L, address * P){
 	address temp1,temp2;
-	
+
 	temp1 = Point(*L);
 	while(temp1 != Nil){
 		temp1 = Next(temp1);
@@ -218,22 +219,22 @@ void DelAfter (List * L, address * Pdel, address Prec){
 	DeAlokasi(Pdel);
 }
 
-//void PrintInfo (List L){
-////	address index;
-////	
-////	index = Point(L);
-//	if(ListEmpty(L)){
-//		printf("\nList Kosong!");
-//	}else{
-//		while(1){
-//			if(Point(L) == Nil){
-//				break;
-//			}
-//			printf("%d\t",Info(Point(L)));
-//			Point(L) = Next(Point(L));
-//		}
-//	}
-//}
+void PrintInfo (List L){
+	address index;
+
+	index = Point(L);
+	if(ListEmpty(L)){
+		cout << "Film Kosong!";
+	}else{
+		while(1){
+			if(index == Nil){
+				break;
+			}
+			cout << index->info.namaFilm <<"\t" << index->info.jamFilm << endl;
+			index = Next(index);
+		}
+	}
+}
 
 void DelAll (List * L){
 	infotype temp2;

@@ -19,14 +19,30 @@ string bangku[ROW][COL]{
 };
 string *film;
 List listFilm;
-Film *arrFilm;
 
 void init(Studio * &arrStudio){
 	arrStudio = new Studio[STUDIO];
-	arrFilm = new Film[TFILM];
-	CreateList(&listFilm);
-	
-//	inputFilm();
+//	CreateList(&listFilm);
+	fstream fileFilm("listFilm.txt",fstream::out|fstream::in);
+	infotype temp;
+
+	atexit(beforeExit);
+	if(fileFilm.fail())
+	{
+		cout << "listFilm.txt tidak ditemukan! Membuat file baru...";
+		fileFilm.open("listFilm.txt",fstream::out|fstream::in|fstream::trunc);
+		fileFilm.close();
+	} else{
+			if(fileFilm.peek() != EOF) {
+				while(!fileFilm.eof()){
+					getline(fileFilm, temp.namaFilm);
+					getline(fileFilm, temp.jamFilm);
+					getline(fileFilm, temp.menitFilm);
+					InsVLast(&listFilm,temp);
+				}
+
+			}
+		}
 	for(int i = 0; i < STUDIO; i++){
 		for(int y = 0; y < ROW; y++){
 			for(int x = 0; x < COL; x++){
@@ -34,76 +50,68 @@ void init(Studio * &arrStudio){
 			}
 		}
 		arrStudio[i].sisaBangku = (ROW - 1) * (COL - 1);
-//		arrStudio[i].namaFilm = film[i];
 	}
-	
+	fileFilm.close();
 }
 
 void inputFilm(){
-//	film = new string[TFILM];
-//	film[0] = "Doctor Strange : Multiverse Of Madness";
-//	film[1] = "KKN";
-//	film[2] = "From Deep Within";
 
-	int jamFilm;
-	int menitFilm;
+	infotype tempF;
+	int tempJ,tempM;
+	ofstream fileFilm("listFilm.txt");
 	string namaFilm;
 	address temp;
-	
-	do{
-		cout << "Masukkan Judul Film :";
- 		cin >> namaFilm;
-			system("cls");
-			break;
-		
-	}while(true);
-	
+
+
+	cout << "Masukkan Judul Film :";
+    getline(cin >> ws, tempF.namaFilm);
+
 	do{
 		cout << "Masukkan Durasi Jam Film : ";
-		cin >> jamFilm;
-		if(jamFilm < 0 || jamFilm > 23){
+		cin >> tempF.jamFilm;
+		tempJ = stoi(tempF.jamFilm);
+		if(tempJ > 0 && tempJ < 24){
+			break;
+		} else {
 			cout << "Format Jam Salah!";
 			getch();
 			system("cls");
-		} else {
-			break;
 		}
-	
+
 	}while(true);
-	
+
 	do{
 		cout << "Masukkan Durasi Menit Film :";
-		cin >> menitFilm;
-		if(menitFilm < 0 || menitFilm > 59){
+		cin >> tempF.menitFilm;
+		tempM = stoi(tempF.menitFilm);
+		if(tempM > 0 && tempM < 60){
+			break;
+		} else{
 			cout << "Format Menit Salah!";
 			getch();
 			system("cls");
-		} else{
-			break;
 		}
 	}while(true);
-	InsVLast(&listFilm,namaFilm,jamFilm,menitFilm);
-	
+
+	InsVLast(&listFilm,tempF);
+	fileFilm.close();
 }
-	
-    
-//void listFilm(){
-//	cout << endl;
-//	cout << endl;
-//	cout << "ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ» " << endl;
-//	cout << "º                                                  SEDANG TAYANG                                                      º" << endl;
-//	cout << "º                                    Berikut list film yang tayang pada hari ini                                      º" << endl;
-//	cout << "ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼ " << endl;
-//	cout << endl;
-//	cout << "ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ» " << endl;
-//	cout << "º No         Judul Film                                                 Studio                                        º" << endl;
-//	cout << "º                                                                                                                     º" <<endl;
-//	for(int i = 0; i < TFILM; i++){
-//		cout << "º " << setw(11) << left << i+1 << setw(59) << left << film[i] << setw(46)<<left<< i << "º" << endl;
-//	}
-//	cout << "ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼ " << endl;
-//	cout << endl;
-//}
+
+void saveToFile(){
+	ofstream fileFilm("listFilm.txt");
+	address index = Point(listFilm);
+	while(index != NULL)
+	{
+		fileFilm << index->info.namaFilm << endl << index->info.jamFilm << endl << index->info.menitFilm << endl;
+		index = Next(index);
+	}
+	fileFilm.close();
+}
+
+void displayFilm(){
+	PrintInfo(listFilm);
+
+}
 
 // Memberikan logic pada function layar()
 void layar(Studio studio)
@@ -150,7 +158,7 @@ void input(Studio *arrStudio)
 			break;
 		}
 	}while(true);
-	
+
 	do{
 		layar(arrStudio[film - 1]);
 		cout << "Pilih Tipe(BIASA/VIP) :";
@@ -164,7 +172,7 @@ void input(Studio *arrStudio)
 		}
 		system("cls");
 	}while(true);
-		
+
 	do{
 		layar(arrStudio[film - 1]);
 		cout << "Pilih Kursi :";
@@ -223,8 +231,10 @@ string check(string x)
     }
 }
 //menambahkan pesan "Terima Kasih" Jika function exit dieksekusi dan menyelesaikan program
-void exit()
+void beforeExit()
 {
+	saveToFile();
+	DelAll(&listFilm);
     cout << "\n\n Terima kasih!.";
     cout << endl
          << endl;

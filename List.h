@@ -2,6 +2,7 @@
 #define List_H
 #include <stdio.h>
 #include <iostream>
+#include "Logic.h"
 
 using namespace std;
 #define Nil NULL
@@ -13,21 +14,24 @@ using namespace std;
 #define Nama(L) (L).nama_list
 
 
-typedef string infotype;
+typedef struct film{
+	string namaFilm,jamFilm,menitFilm;
+}Film;
+
+typedef struct film infotype;
 typedef struct tElmtList *address;
 typedef struct tElmtList {
 	infotype info;
-	int jamFilm;
-	int menitFilm;
 	address  next;
-	} ElmtList;
+} ElmtList;
+
+
 
 /* Definisi list : */
 /* List kosong ===> Point(L) = Nil */
 /* Setiap elemen dengan address P dapat diacu info(P) dan Next(P);  */
 /* Elemen terakhir list ===> Jika addressnya Last maka Next(Last) = Nil */
 typedef struct {
-	infotype nama_list;
 	address Point;
 } List;
 
@@ -43,7 +47,7 @@ void CreateList (List * L);
 /* FS : Terbentuk List Kosong */
 
 /**** Manajemen Memory ****/
-address Alokasi (infotype X,int jam,int menit);
+address Alokasi (infotype X);
 /* Mengirimkan address hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka address != Nil, 	   */
 /*	dan misalnya menghasilkan P, maka Info(P) = X, Next(P) = Nil */
@@ -75,12 +79,12 @@ address SearchPrec (List L, infotype X);
 
 /**** PRIMITIF BERDASARKAN NILAI ****/
 /**** Penambahan Elemen ****/
-void InsVFirst (List * L, infotype X,int jam,int menit);
+void InsVFirst (List * L, infotype X);
 /* IS : L mungkin Kosong */
 /* FS : melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
 
-void InsVLast (List * L, infotype X,int jam,int menit);
+void InsVLast (List * L, infotype X);
 /* IS : L mungkin Kosong */
 /* FS : melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir (elemen terakhir adalah yang baru) */

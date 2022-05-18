@@ -7,6 +7,7 @@ int main (){
 	Studio *arrStudio = NULL;
 	init(arrStudio);
 	do{
+		system("cls");
 		cout << "ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ» " << endl;
 		cout << "º                  Nama Bioskop                   º" << endl;
 		cout << "ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼ " << endl;
@@ -26,7 +27,7 @@ int main (){
 		cout << " " << endl;
 		cout << " Pilih : ";
 		cin >> menu; 	//Input data ke variabel menu
-		system("cls");
+		
 		switch(menu)
 		{
 		    case 1:
@@ -34,14 +35,16 @@ int main (){
 				    break;
 				
 			    case 2:
-//					listFilm();
+			    	system("cls");
+					displayFilm();
+					getch();
 					break;
 				
 			    case 3:
 			    	layar(arrStudio[0]);
 					break;
 					
-			    case 4:
+			    case 4: 
 					cout << endl;
 					cout << endl;
 					cout << "ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ» " << endl;
@@ -78,7 +81,7 @@ int main (){
 				
 			
 			    case 6:
-			    	exit();
+			    	beforeExit();
 			    	break;
 			
 			    default: cout << "Menu tidak ditemukan";

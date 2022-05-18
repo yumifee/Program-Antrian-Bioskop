@@ -23,19 +23,14 @@ typedef struct {
 	string kursi[ROW][COL];
 }Studio;
 
-typedef struct {
-	string namaFilm;
-	int jamFilm;
-	int menitFilm;
-	
-}Film;
 
 void init(Studio * &arrStudio);
 void inputFilm();
-//void listFilm();
+void displayFilm();
 void layar(Studio studio);
 void input(Studio *arrStudio);
-void exit();
+void beforeExit();
 string check(string x);
-
+bool is_empty(std::ifstream& pFile);
+void saveToFile();
 #endif
