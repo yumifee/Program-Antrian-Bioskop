@@ -22,7 +22,6 @@ List listFilm;
 
 void init(Studio * &arrStudio){
 	arrStudio = new Studio[STUDIO];
-<<<<<<< HEAD
 //	CreateList(&listFilm);
 	fstream fileFilm("listFilm.txt",fstream::out|fstream::in);
 	infotype temp;
@@ -44,10 +43,8 @@ void init(Studio * &arrStudio){
 
 			}
 		}
-=======
 	inputFilm();
-	atexit(exit);
->>>>>>> origin/algo_waktu
+	atexit(beforeExit);
 	for(int i = 0; i < STUDIO; i++){
 		for(int y = 0; y < ROW; y++){
 			for(int x = 0; x < COL; x++){
@@ -61,25 +58,30 @@ void init(Studio * &arrStudio){
 
 void setJadwal(Studio *arrStudio){
 	time_t t;
-	int film,jam,menit;
+	int film,jam,menit,jumlahF;
+	address index = Point(listFilm);
 	Jadwal temp;
-	
+
 	t = time(NULL);
 	temp = gmtime(&t);
-	
-	listFilm();
+    jumlahF = CountList(listFilm);
+
+	displayFilm();
 	do{
-		cout << "Film :";
+		cout << "Pilih Film(1-" << jumlahF << "):";
  		cin >> film;
-		if(film < 1 || film > TFILM){
+		if(film < 1 || film > jumlahF){
 			cout << "Film Tidak Ada !";
 			getch();
 			system("cls");
 		} else {
+            for(int i = 1; i < film;i++){
+                index = Next(index);
+		    }
 			break;
 		}
 	}while(true);
-	
+
 	do{
 		cout << "Jam tayang (0 - 23) : ";
 		cin >> jam;
@@ -90,9 +92,9 @@ void setJadwal(Studio *arrStudio){
 		} else {
 			break;
 		}
-	
+
 	}while(true);
-	
+
 	do{
 		cout << "Menit Tayang (0 - 59) :";
 		cin >> menit;
@@ -204,17 +206,23 @@ void layar(Studio studio)
 // Memberikan logic pada function input()
 void input(Studio *arrStudio)
 {
-	int film,pilih;
+	int film,pilih,jumlahF;
+	address index = Point(listFilm);
 	string tipe,bangku,cek;
+
+	jumlahF = CountList(listFilm);
 	do{
 		displayFilm();
-		cout << "Pilih Film :";
+		cout << "Pilih Film(1-" << jumlahF << "):";
 		cin >> film;
-		if(film > TFILM || film < 1){
+		if(film > jumlahF || film < 1){
 			cout << "Film Tidak Ada!";
 			getch();
 			system("cls");
 		} else {
+		    for(int i = 1; i < film;i++){
+                index = Next(index);
+		    }
 			break;
 		}
 	}while(true);

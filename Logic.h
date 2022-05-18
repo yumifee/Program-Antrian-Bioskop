@@ -7,11 +7,8 @@
 #include <algorithm>
 #include <conio.h>
 #include <stdlib.h>
-<<<<<<< HEAD
 #include <fstream>
-=======
 #include <ctime>
->>>>>>> origin/algo_waktu
 
 using namespace std;
 
@@ -29,11 +26,8 @@ typedef struct {
 	string kursi[ROW][COL];
 }Studio;
 
-<<<<<<< HEAD
 
-=======
 void setJadwal(Studio *arrStudio);
->>>>>>> origin/algo_waktu
 void init(Studio * &arrStudio);
 void inputFilm();
 void displayFilm();

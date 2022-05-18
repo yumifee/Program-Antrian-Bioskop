@@ -7,7 +7,7 @@ int main (){
 	Studio *arrStudio = NULL;
 	init(arrStudio);
 	do{
-<<<<<<< HEAD
+
 		system("cls");
 		cout << "Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ» " << endl;
 		cout << "Âº                  Nama Bioskop                   Âº" << endl;
@@ -21,7 +21,6 @@ int main (){
 		cout << "Âº4. List Jam tayang                               Âº"<< endl;
 		cout << "Âº5. Input Film                                    Âº"<< endl;
 		cout << "Âº6. Keluar                                        Âº"<< endl;
-=======
 		cout << "ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ» " << endl;
 		cout << "º                  Nama Bioskop                   º" << endl;
 		cout << "ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼ " << endl;
@@ -33,31 +32,29 @@ int main (){
 		cout << "º3. Input Jadwal                                  º" <<  endl;
 		cout << "º4. List Jam tayang                               º"<< endl;
 		cout << "º5. Keluar                                        º"<< endl;
->>>>>>> origin/algo_waktu
-		
+
+
 		cout << "ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼ " << endl;
 		cout << " " << endl;
 		cout << "|======================================================================================================================|" << endl;
 		cout << " " << endl;
 		cout << " Pilih : ";
 		cin >> menu; 	//Input data ke variabel menu
-		
+
 		switch(menu)
 		{
 		    case 1:
 		    	input(arrStudio);
 				    break;
-				
+
 			    case 2:
 			    	system("cls");
 					displayFilm();
 					getch();
 					break;
-				
+
 			    case 3:
-<<<<<<< HEAD
 			    	layar(arrStudio[0]);
-=======
 			    	setJadwal(arrStudio);
 //					cout << endl;
 //					cout << endl;
@@ -77,10 +74,9 @@ int main (){
 //					cout << "º                                                      V = VIP                                                        º" << endl;
 //					cout << "ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼ " << endl;
 //					cout << endl;
->>>>>>> origin/algo_waktu
 					break;
-					
-			    case 4: 
+
+			    case 4:
 					cout << endl;
 					cout << endl;
 					cout << "Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ» " << endl;
@@ -110,16 +106,16 @@ int main (){
 					cout << "ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼ " << endl;
 					cout << endl;
 					break;
-			
+
 				case 5:
 					inputFilm();
 					break;
-				
-			
+
+
 			    case 6:
 			    	beforeExit();
 			    	break;
-			
+
 			    default: cout << "Menu tidak ditemukan";
 			    break;
 		}
