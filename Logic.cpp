@@ -34,12 +34,12 @@ void init(Studio * &arrStudio){
 		fileFilm.close();
 	} else{
 			if(fileFilm.peek() != EOF) {
-				while(!fileFilm.eof()){
+				do{
 					getline(fileFilm, temp.namaFilm);
 					getline(fileFilm, temp.jamFilm);
 					getline(fileFilm, temp.menitFilm);
 					InsVLast(&listFilm,temp);
-				}
+				}while(!fileFilm.eof());
 
 			}
 		}
@@ -59,7 +59,6 @@ void inputFilm(){
 	infotype tempF;
 	int tempJ,tempM;
 	ofstream fileFilm("listFilm.txt");
-	string namaFilm;
 	address temp;
 
 
@@ -102,7 +101,11 @@ void saveToFile(){
 	address index = Point(listFilm);
 	while(index != NULL)
 	{
-		fileFilm << index->info.namaFilm << endl << index->info.jamFilm << endl << index->info.menitFilm << endl;
+	    if(Next(index) != NULL){
+            fileFilm << index->info.namaFilm << endl << index->info.jamFilm << endl << index->info.menitFilm << endl;
+	    } else {
+            fileFilm << index->info.namaFilm << endl << index->info.jamFilm << endl << index->info.menitFilm;
+	    }
 		index = Next(index);
 	}
 	fileFilm.close();
