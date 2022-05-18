@@ -1,4 +1,5 @@
 [Editor_0]
+<<<<<<< HEAD
 CursorCol=1
 CursorRow=13
 TopLine=1
@@ -15,6 +16,24 @@ LeftChar=1
 CursorCol=21
 CursorRow=12
 TopLine=4
+=======
+CursorCol=15
+CursorRow=29
+TopLine=1
+LeftChar=1
+[Editors]
+Order=1,0,2
+Focused=-1
+[Editor_1]
+CursorCol=1
+CursorRow=89
+TopLine=1
+LeftChar=1
+[Editor_2]
+CursorCol=13
+CursorRow=35
+TopLine=13
+>>>>>>> origin/algo_waktu
 LeftChar=1
 [Editor_3]
 CursorCol=33

@@ -7,7 +7,11 @@
 #include <algorithm>
 #include <conio.h>
 #include <stdlib.h>
+<<<<<<< HEAD
 #include <fstream>
+=======
+#include <ctime>
+>>>>>>> origin/algo_waktu
 
 using namespace std;
 
@@ -15,15 +19,21 @@ using namespace std;
 #define COL 11
 #define STUDIO 3
 #define TFILM 3
-
+typedef struct tm* Jadwal;
 typedef struct {
 	int sisaBangku;
 	int terjual;
+	int jamFilm,menitFilm;
+	Jadwal tayang;
 	string namaFilm;
 	string kursi[ROW][COL];
 }Studio;
 
+<<<<<<< HEAD
 
+=======
+void setJadwal(Studio *arrStudio);
+>>>>>>> origin/algo_waktu
 void init(Studio * &arrStudio);
 void inputFilm();
 void displayFilm();
