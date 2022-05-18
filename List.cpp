@@ -222,17 +222,22 @@ void DelAfter (List * L, address * Pdel, address Prec){
 void PrintInfo (List L){
 	address index;
 
-	index = Point(L);
+	index = Point(L);       //index diisi dengan yg ditunjuk oleh point L
 	if(ListEmpty(L)){
 		cout << "Film Kosong!";
 	}else{
+			cout <<"ษอออออออออออออออออออออออออออออออออออออออออออออออป" << endl;
+			cout <<"บ                  Judul Film                   บ" << endl;
+			cout <<"ศอออออออออออออออออออออออออออออออออออออออออออออออผ" << endl;
+			cout <<"ษอออออออออออออออออออออออออออออออออออออออออออออออป" << endl;
 		while(1){
 			if(index == Nil){
 				break;
 			}
-			cout << index->info.namaFilm <<"\t" << index->info.jamFilm << endl;
+
+			cout <<"บ   \t" << index->info.namaFilm <<"\t->  " << index->info.jamFilm << "jam" << index->info.menitFilm << "menit      \tบ" << endl;
 			index = Next(index);
-		}
+		}cout <<"ศอออออออออออออออออออออออออออออออออออออออออออออออผ" << endl;
 	}
 }
 

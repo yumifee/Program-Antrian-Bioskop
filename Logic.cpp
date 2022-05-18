@@ -5,7 +5,7 @@
 
 //membuat output list tempat duduk yang masih tersedia dan tidak menggunakan array
 string bangku[ROW][COL]{
-    {"\b", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"},
+    {"-", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"},
     {"0", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*"},
     {"1", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*"},
     {"2", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*"},
@@ -15,7 +15,7 @@ string bangku[ROW][COL]{
     {"6", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*"},
     {"7", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*"},
     {"8", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*"},
-    {"9", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**"},
+    {"9", "$", "$", "$", "$", "$", "$", "$", "$", "$", "$"},
 };
 string *film;
 List listFilm;
@@ -43,7 +43,6 @@ void init(Studio * &arrStudio){
 
 			}
 		}
-	inputFilm();
 	atexit(beforeExit);
 	for(int i = 0; i < STUDIO; i++){
 		for(int y = 0; y < ROW; y++){
@@ -172,7 +171,6 @@ void saveToFile(){
 
 void displayFilm(){
 	PrintInfo(listFilm);
-
 }
 
 // Memberikan logic pada function layar()
@@ -185,7 +183,7 @@ void layar(Studio studio)
         if (i == 0)
         {
             cout << endl;
-            cout << "\t    (======================== Layar Disini ========================) " << endl;
+            cout << "\t\t (======================== Available Seat ========================) " << endl;
             cout << endl;
         }
         //jika i sudah masuk ke bilangan 10 / 9 ( dalanm array ) program akan menampilkan " Sweetbox "
@@ -197,11 +195,11 @@ void layar(Studio studio)
         }
         for (int j = 0; j < 11; j++)
         {
-            cout << setw(3) << left << studio.kursi[i][j];
+            cout << "\t" << studio.kursi[i][j];
         }
         cout << endl;
     }
-    cout << endl << "\t\t* = Kosong, $ = Terisi" << endl;
+    cout << endl << "\t\t\t\t\t* = Kosong, $ = Terisi" << endl;
 }
 // Memberikan logic pada function input()
 void input(Studio *arrStudio)
