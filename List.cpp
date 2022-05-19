@@ -1,12 +1,14 @@
 /*
-Nama : Panji Judha Fadhilla & Nurul Anisah
-NIM : 211511053 & 211511052
+Nama : Panji Judha Fadhilla & Yumi Febriana
+NIM : 211511053 & 211511063
 Kelas : 1B
 Tanggal : 8/03/2022
  */
 #include "List.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+
 
 bool ListEmpty (List L){
     if (Point(L) == Nil){
@@ -226,9 +228,9 @@ void PrintInfo (List L){
 	if(ListEmpty(L)){
 		cout << "Film Kosong!";
 	}else{
-			cout <<"ษอออออออออออออออออออออออออออออออออออออออออออออออป" << endl;
-			cout <<"บ                  Judul Film                   บ" << endl;
-			cout <<"ศอออออออออออออออออออออออออออออออออออออออออออออออผ" << endl;
+			cout <<"ษอออออออออออออออออออออออออออออออออออออออออออออออออออออออออป" << endl;
+			cout <<"บ                        Judul Film                       บ" << endl;
+			cout <<"ศอออออออออออออออออออออออออออออออออออออออออออออออออออออออออผ" << endl;
 			cout <<"ษอออออออออออออออออออออออออออออออออออออออออออออออออออออออออป" << endl;
 		while(1){
 			if(index == Nil){

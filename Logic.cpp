@@ -149,21 +149,20 @@ void setJadwal(Studio *arrStudio){
 
 void inputFilm(){
 
-	infotype tempF;
-	int tempJ,tempM;
-	ofstream fileFilm("listFilm.txt");
-	address temp;
+	infotype tempF;     //struct Film (detail ada pada list..h)
+	int tempJ,tempM;    //temporarty jam dan menit bertipe integer
+	address temp;       //temporary address sebelum dimasukan ke queue
 
 	cout << "Masukkan Judul Film :";
-    getline(cin >> ws, tempF.namaFilm);
+    getline(cin >> ws, tempF.namaFilm); //getline dan ws = agar cin dapat assign spasi ke variabel
 
-	do{
+	do{     //looping untuk var jam jika penginputan 0-24
 		cout << "Masukkan Durasi Jam Film : ";
 		cin >> tempF.jamFilm;
-		tempJ = stoi(tempF.jamFilm);
+		tempJ = stoi(tempF.jamFilm);        // subvar jamFilm diubah ke dalam integer dan di assign ke variabel tempJ menggunakan stoi
 		if(tempJ > 0 && tempJ < 24){
 			break;
-		} else {
+		} else {        //jika penginputan tidak sesuai dengan 0-24
 			cout << "Format Jam Salah!";
 			getch();
 			system("cls");
@@ -171,10 +170,10 @@ void inputFilm(){
 
 	}while(true);
 
-	do{
+	do{     //looping untuk var menit
 		cout << "Masukkan Durasi Menit Film :";
 		cin >> tempF.menitFilm;
-		tempM = stoi(tempF.menitFilm);
+		tempM = stoi(tempF.menitFilm);      //subvar menitFilm diubah ke dalam integer dan di assign ke variabel tempM menggunakan stoi
 		if(tempM > 0 && tempM < 60){
 			break;
 		} else{
@@ -184,8 +183,7 @@ void inputFilm(){
 		}
 	}while(true);
 
-	InsVLast(&listFilm,tempF);
-	fileFilm.close();
+	InsVLast(&listFilm,tempF);      //memasukan hasil inputan ke dalam linkedlist
 }
 
 void saveToFileStudio(Studio *arrStudio){
@@ -233,9 +231,14 @@ void displayFilm(){
 	PrintInfo(listFilm);
 }
 void displayJadwal(Studio *arrStudio){
+        cout << "浜様様様様様様様様様様様様様様様様様様様様様様様様融" << endl;
+		cout << "                     Jadwal Film                    " << endl;
+		cout << "藩様様様様様様様様様様様様様様様様様様様様様様様様夕" << endl;
+        cout << "浜様様様様様様様様様様様様様様様様様様様様様様様様融" << endl;
     for(int i = 0; i < STUDIO; i++){
-        cout << "Studio " << i+1 <<":" << endl << "\t|" << setw(20) << left << arrStudio[i].namaFilm << "| " << arrStudio[i].tayang.tm_hour << ":" << arrStudio[i].tayang.tm_min << endl;
-    }
+
+        cout << setw(6) << right << "   Studio" << i+1 <<":" << endl << "\t " << setw(30) << left << arrStudio[i].namaFilm << arrStudio[i].tayang.tm_hour << ":" << arrStudio[i].tayang.tm_min <<setw(10)<< right << endl;
+    }   cout << "藩様様様様様様様様様様様様様様様様様様様様様様様様夕" << endl;
 }
 // Memberikan logic pada function layar()
 void layar(Studio studio)

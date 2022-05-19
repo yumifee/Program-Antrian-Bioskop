@@ -53,3 +53,32 @@
 1652901857 source:d:\tugas smt2\sda\sda tubes\tubessda\logic.cpp
 	"Logic.h"
 
+1652926426 source:d:\tugas smt2\sda\sda tubes\source code\bioskop.cpp
+
+1652924361 d:\tugas smt2\sda\sda tubes\source code\logic.h
+	<iostream>
+	"List.h"
+	<iomanip>
+	<string>
+	<algorithm>
+	<conio.h>
+	<stdlib.h>
+	<fstream>
+	<ctime>
+
+1652894377 d:\tugas smt2\sda\sda tubes\source code\list.h
+	<stdio.h>
+	<iostream>
+	"Logic.h"
+
+1652926852 source:d:\tugas smt2\sda\sda tubes\source code\list.cpp
+	"List.h"
+	<stdio.h>
+	<stdlib.h>
+
+1652928836 source:d:\tugas smt2\sda\sda tubes\source code\logic.cpp
+	"Logic.h"
+
+1652926739 source:d:\tugas smt2\sda\sda tubes\source code\menu.cpp
+	"Logic.h"
+
