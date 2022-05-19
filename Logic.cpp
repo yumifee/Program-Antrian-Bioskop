@@ -23,7 +23,8 @@ List listFilm;
 void init(Studio * &arrStudio){
 	arrStudio = new Studio[STUDIO];
 //	CreateList(&listFilm);
-    string strDurasiJam,strDurasiMenit,tempJam,tempMenit;
+    string strDurasiJam,strDurasiMenit,tempJam,tempMenit,strIndex;
+    int i;
 //    stringstream jam,menit;
 	fstream fileFilm("listFilm.txt",fstream::out|fstream::in);
 	fstream fileStudio("arrStudio.txt",fstream::out|fstream::in);
@@ -50,7 +51,9 @@ void init(Studio * &arrStudio){
 
 			}
 			if(fileStudio.peek() != EOF){
-                for(int i = 0; i < STUDIO; i++){
+                while(!fileStudio.eof()){
+                    getline(fileStudio,strIndex);
+                    i = stoi(strIndex);
                     getline(fileStudio,arrStudio[i].namaFilm);
                     getline(fileStudio,strDurasiJam);
                     getline(fileStudio,strDurasiMenit);
@@ -63,11 +66,7 @@ void init(Studio * &arrStudio){
                 }
 			}
 		}
-<<<<<<< HEAD
 
-=======
-	atexit(beforeExit);
->>>>>>> origin/Display
 	for(int i = 0; i < STUDIO; i++){
 		for(int y = 0; y < ROW; y++){
 			for(int x = 0; x < COL; x++){
@@ -188,23 +187,30 @@ void inputFilm(){
 	InsVLast(&listFilm,tempF);
 	fileFilm.close();
 }
+
 void saveToFileStudio(Studio *arrStudio){
     string strDurasiJam,strDurasiMenit,tempJam,tempMenit;
     stringstream jam,menit;
+    int i;
     ofstream fileStudio("arrStudio.txt");
-    for(int i = 0; i < STUDIO; i++){
-        strDurasiJam = to_string(arrStudio[i].jamFilm);
-        strDurasiMenit = to_string(arrStudio[i].menitFilm);
-        jam << arrStudio[i].tayang.tm_hour;
-        menit << arrStudio[i].tayang.tm_min;
-        tempJam = jam.str();
-        tempMenit = menit.str();
-        cout << strDurasiJam << endl;
-        if(i == STUDIO - 1){
-            fileStudio << arrStudio[i].namaFilm << endl << strDurasiJam << endl << strDurasiMenit << endl << tempJam << endl << tempMenit;
-        } else {
-            fileStudio << arrStudio[i].namaFilm << endl << strDurasiJam << endl << strDurasiMenit << endl << tempJam << endl << tempMenit << endl;
+
+    i = 0;
+    while(i < STUDIO){
+        if(!arrStudio[i].namaFilm.empty()){
+            strDurasiJam = to_string(arrStudio[i].jamFilm);
+            strDurasiMenit = to_string(arrStudio[i].menitFilm);
+      //      jam << arrStudio[i].tayang.tm_hour;
+        //    menit << arrStudio[i].tayang.tm_min;
+            tempJam = to_string(arrStudio[i].tayang.tm_hour);
+            tempMenit = to_string(arrStudio[i].tayang.tm_min);
+            cout << strDurasiJam << endl;
+            if(i == STUDIO - 1){
+                fileStudio << i << endl << arrStudio[i].namaFilm << endl << strDurasiJam << endl << strDurasiMenit << endl << tempJam << endl << tempMenit;
+            } else {
+                fileStudio << i << endl << arrStudio[i].namaFilm << endl << strDurasiJam << endl << strDurasiMenit << endl << tempJam << endl << tempMenit << endl;
+            }
         }
+        i++;
     }
     fileStudio.close();
 }
@@ -228,7 +234,7 @@ void displayFilm(){
 }
 void displayJadwal(Studio *arrStudio){
     for(int i = 0; i < STUDIO; i++){
-        cout << arrStudio[i].namaFilm
+        cout << "Studio " << i+1 <<":" << endl << "\t|" << setw(20) << left << arrStudio[i].namaFilm << "| " << arrStudio[i].tayang.tm_hour << ":" << arrStudio[i].tayang.tm_min << endl;
     }
 }
 // Memberikan logic pada function layar()

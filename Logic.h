@@ -31,6 +31,7 @@ void setJadwal(Studio *arrStudio);
 void init(Studio * &arrStudio);
 void inputFilm();
 void displayFilm();
+void displayJadwal(Studio *arrStudio);
 void layar(Studio studio);
 void input(Studio *arrStudio);
 void beforeExit(Studio *arrStudio);

@@ -229,19 +229,14 @@ void PrintInfo (List L){
 			cout <<"ษอออออออออออออออออออออออออออออออออออออออออออออออป" << endl;
 			cout <<"บ                  Judul Film                   บ" << endl;
 			cout <<"ศอออออออออออออออออออออออออออออออออออออออออออออออผ" << endl;
-			cout <<"ษอออออออออออออออออออออออออออออออออออออออออออออออป" << endl;
+			cout <<"ษอออออออออออออออออออออออออออออออออออออออออออออออออออออออออป" << endl;
 		while(1){
 			if(index == Nil){
 				break;
 			}
-<<<<<<< HEAD
-			cout << index->info.namaFilm <<"\t" << index->info.jamFilm << "\t" << index->info.menitFilm << endl;
-=======
-
-			cout <<"บ   \t" << index->info.namaFilm <<"\t->  " << index->info.jamFilm << "jam" << index->info.menitFilm << "menit      \tบ" << endl;
->>>>>>> origin/Display
+			cout <<"บ " << setw(30) << left << index->info.namaFilm << setw(4) << right << "-> "<< setw(3) << left << index->info.jamFilm  << " jam " << setw(3) << left << index->info.menitFilm << setw(11) << left << " menit" << "บ" << endl;
 			index = Next(index);
-		}cout <<"ศอออออออออออออออออออออออออออออออออออออออออออออออผ" << endl;
+		}cout <<"ศอออออออออออออออออออออออออออออออออออออออออออออออออออออออออผ" << endl;
 	}
 }
 
