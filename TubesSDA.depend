@@ -26,3 +26,30 @@
 1652903887 source:d:\kuliah\semester_2\sda\tubessda(main)\tubessda\logic.cpp
 	"Logic.h"
 
+1652900288 source:d:\tugas smt2\sda\sda tubes\tubessda\bioskop.cpp
+	"Logic.h"
+
+1652894377 d:\tugas smt2\sda\sda tubes\tubessda\logic.h
+	<iostream>
+	"List.h"
+	<iomanip>
+	<string>
+	<algorithm>
+	<conio.h>
+	<stdlib.h>
+	<fstream>
+	<ctime>
+
+1652894377 d:\tugas smt2\sda\sda tubes\tubessda\list.h
+	<stdio.h>
+	<iostream>
+	"Logic.h"
+
+1652900121 source:d:\tugas smt2\sda\sda tubes\tubessda\list.cpp
+	"List.h"
+	<stdio.h>
+	<stdlib.h>
+
+1652901857 source:d:\tugas smt2\sda\sda tubes\tubessda\logic.cpp
+	"Logic.h"
+
