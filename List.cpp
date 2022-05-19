@@ -230,7 +230,7 @@ void PrintInfo (List L){
 			if(index == Nil){
 				break;
 			}
-			cout << index->info.namaFilm <<"\t" << index->info.jamFilm << endl;
+			cout << index->info.namaFilm <<"\t" << index->info.jamFilm << "\t" << index->info.menitFilm << endl;
 			index = Next(index);
 		}
 	}

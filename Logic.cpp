@@ -23,15 +23,22 @@ List listFilm;
 void init(Studio * &arrStudio){
 	arrStudio = new Studio[STUDIO];
 //	CreateList(&listFilm);
+    string strDurasiJam,strDurasiMenit,tempJam,tempMenit;
+//    stringstream jam,menit;
 	fstream fileFilm("listFilm.txt",fstream::out|fstream::in);
+	fstream fileStudio("arrStudio.txt",fstream::out|fstream::in);
 	infotype temp;
 
-	atexit(beforeExit);
 	if(fileFilm.fail())
 	{
 		cout << "listFilm.txt tidak ditemukan! Membuat file baru...";
 		fileFilm.open("listFilm.txt",fstream::out|fstream::in|fstream::trunc);
 		fileFilm.close();
+
+	}else if(fileStudio.fail()){
+	    cout << "arrStudio.txt tidak ditemukan! Membuat file baru...";
+        fileStudio.open("arrStudio.txt",fstream::out|fstream::in|fstream::trunc);
+        fileStudio.close();
 	} else{
 			if(fileFilm.peek() != EOF) {
 				do{
@@ -42,9 +49,21 @@ void init(Studio * &arrStudio){
 				}while(!fileFilm.eof());
 
 			}
+			if(fileStudio.peek() != EOF){
+                for(int i = 0; i < STUDIO; i++){
+                    getline(fileStudio,arrStudio[i].namaFilm);
+                    getline(fileStudio,strDurasiJam);
+                    getline(fileStudio,strDurasiMenit);
+                    getline(fileStudio,tempJam);
+                    getline(fileStudio,tempMenit);
+                    arrStudio[i].jamFilm = stoi(strDurasiJam);
+                    arrStudio[i].menitFilm = stoi(strDurasiMenit);
+                    arrStudio[i].tayang.tm_hour = stoi(tempJam);
+                    arrStudio[i].tayang.tm_min = stoi(tempMenit);
+                }
+			}
 		}
-	inputFilm();
-	atexit(beforeExit);
+
 	for(int i = 0; i < STUDIO; i++){
 		for(int y = 0; y < ROW; y++){
 			for(int x = 0; x < COL; x++){
@@ -54,18 +73,16 @@ void init(Studio * &arrStudio){
 		arrStudio[i].sisaBangku = (ROW - 1) * (COL - 1);
 	}
 	fileFilm.close();
+	fileStudio.close();
 }
 
 void setJadwal(Studio *arrStudio){
 	time_t t;
-	int film,jam,menit,jumlahF;
+	int film,jam,menit,jumlahF,pilihStudio,durasiJam,durasiMenit;
 	address index = Point(listFilm);
 	Jadwal temp;
 
-	t = time(NULL);
-	temp = gmtime(&t);
     jumlahF = CountList(listFilm);
-
 	displayFilm();
 	do{
 		cout << "Pilih Film(1-" << jumlahF << "):";
@@ -77,10 +94,23 @@ void setJadwal(Studio *arrStudio){
 		} else {
             for(int i = 1; i < film;i++){
                 index = Next(index);
+                durasiJam = stoi(index->info.jamFilm);
+                durasiMenit = stoi(index->info.menitFilm);
 		    }
 			break;
 		}
 	}while(true);
+    do{
+        system("cls");
+        cout << "Pilih Studio(1-" << STUDIO <<"):";
+        cin >> pilihStudio;
+        if(pilihStudio < 1 || pilihStudio >STUDIO){
+            cout << "Studio yang dipilih tidak ada!";
+            getch();
+        }else{
+            break;
+        }
+    }while(1);
 
 	do{
 		cout << "Jam tayang (0 - 23) : ";
@@ -96,20 +126,21 @@ void setJadwal(Studio *arrStudio){
 	}while(true);
 
 	do{
+        system("cls");
 		cout << "Menit Tayang (0 - 59) :";
 		cin >> menit;
 		if(menit < 0 || menit > 59){
 			cout << "Format Menit Salah!";
 			getch();
-			system("cls");
 		} else{
 			break;
 		}
 	}while(true);
-	temp->tm_hour = jam;
-	temp->tm_min = menit;
-	temp->tm_sec = 0;
-	arrStudio[film - 1].tayang = temp;
+	arrStudio[pilihStudio - 1].tayang.tm_hour = jam;
+	arrStudio[pilihStudio - 1].tayang.tm_min = menit;
+	arrStudio[pilihStudio - 1].jamFilm = durasiJam;
+	arrStudio[pilihStudio - 1].menitFilm = durasiMenit;
+	arrStudio[pilihStudio - 1].namaFilm = index->info.namaFilm;
 }
 
 
@@ -119,7 +150,6 @@ void inputFilm(){
 	int tempJ,tempM;
 	ofstream fileFilm("listFilm.txt");
 	address temp;
-
 
 	cout << "Masukkan Judul Film :";
     getline(cin >> ws, tempF.namaFilm);
@@ -154,7 +184,26 @@ void inputFilm(){
 	InsVLast(&listFilm,tempF);
 	fileFilm.close();
 }
-
+void saveToFileStudio(Studio *arrStudio){
+    string strDurasiJam,strDurasiMenit,tempJam,tempMenit;
+    stringstream jam,menit;
+    ofstream fileStudio("arrStudio.txt");
+    for(int i = 0; i < STUDIO; i++){
+        strDurasiJam = to_string(arrStudio[i].jamFilm);
+        strDurasiMenit = to_string(arrStudio[i].menitFilm);
+        jam << arrStudio[i].tayang.tm_hour;
+        menit << arrStudio[i].tayang.tm_min;
+        tempJam = jam.str();
+        tempMenit = menit.str();
+        cout << strDurasiJam << endl;
+        if(i == STUDIO - 1){
+            fileStudio << arrStudio[i].namaFilm << endl << strDurasiJam << endl << strDurasiMenit << endl << tempJam << endl << tempMenit;
+        } else {
+            fileStudio << arrStudio[i].namaFilm << endl << strDurasiJam << endl << strDurasiMenit << endl << tempJam << endl << tempMenit << endl;
+        }
+    }
+    fileStudio.close();
+}
 void saveToFile(){
 	ofstream fileFilm("listFilm.txt");
 	address index = Point(listFilm);
@@ -174,7 +223,11 @@ void displayFilm(){
 	PrintInfo(listFilm);
 
 }
-
+void displayJadwal(Studio *arrStudio){
+    for(int i = 0; i < STUDIO; i++){
+        cout << arrStudio[i].namaFilm
+    }
+}
 // Memberikan logic pada function layar()
 void layar(Studio studio)
 {
@@ -206,7 +259,8 @@ void layar(Studio studio)
 // Memberikan logic pada function input()
 void input(Studio *arrStudio)
 {
-	int film,pilih,jumlahF;
+	int film,pilih,jumlahF,pilihStudio;
+	int iStudio[STUDIO];
 	address index = Point(listFilm);
 	string tipe,bangku,cek;
 
@@ -226,9 +280,19 @@ void input(Studio *arrStudio)
 			break;
 		}
 	}while(true);
-
+	int i = 0;
+	int x = 0;
+	cout << "Studio yang menampilkan :" << endl;
+    for(int i = 0;i < STUDIO;i++){
+        if(arrStudio[i].namaFilm == index->info.namaFilm){
+            cout << "Studio" << i+1 << endl;
+            iStudio[x] = i;
+        }
+    }
+    cout << "Pilih(1-"<<STUDIO<<"):";
+    cin >> pilihStudio;
 	do{
-		layar(arrStudio[film - 1]);
+		layar(arrStudio[pilihStudio]);
 		cout << "Pilih Tipe(BIASA/VIP) :";
 		cin >> tipe;
 		transform(tipe.begin(), tipe.end(),tipe.begin(), ::toupper);//toupper string
@@ -299,9 +363,10 @@ string check(string x)
     }
 }
 //menambahkan pesan "Terima Kasih" Jika function exit dieksekusi dan menyelesaikan program
-void beforeExit()
+void beforeExit(Studio *arrStudio)
 {
 	saveToFile();
+	saveToFileStudio(arrStudio);
 	DelAll(&listFilm);
     cout << "\n\n Terima kasih!.";
     cout << endl

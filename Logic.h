@@ -16,7 +16,7 @@ using namespace std;
 #define COL 11
 #define STUDIO 3
 #define TFILM 3
-typedef struct tm* Jadwal;
+typedef struct tm Jadwal;
 typedef struct {
 	int sisaBangku;
 	int terjual;
@@ -33,8 +33,9 @@ void inputFilm();
 void displayFilm();
 void layar(Studio studio);
 void input(Studio *arrStudio);
-void beforeExit();
+void beforeExit(Studio *arrStudio);
 string check(string x);
 bool is_empty(std::ifstream& pFile);
 void saveToFile();
+void saveToFileStudio(Studio *arrStudio);
 #endif
