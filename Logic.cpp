@@ -278,33 +278,24 @@ void input(Studio *arrStudio)
 
 	jumlahF = CountList(listFilm);
 	do{
-		displayFilm();
-		cout << "Pilih Film(1-" << jumlahF << "):";
-		cin >> film;
-		if(film > jumlahF || film < 1){
-			cout << "Film Tidak Ada!";
+		displayJadwal(arrStudio);
+		cout << "Pilih (1-" << STUDIO << "):";
+		cin >> pilihStudio;
+		if(pilihStudio > STUDIO || pilihStudio < 1){
+			cout << "Studio Tidak Ada!";
+			getch();
+			system("cls");
+		} else if(arrStudio[pilihStudio - 1].namaFilm.empty()){
+			cout << "Studio Belum Menampilkan Film!";
 			getch();
 			system("cls");
 		} else {
-		    for(int i = 1; i < film;i++){
-                index = Next(index);
-		    }
 			break;
 		}
 	}while(true);
-	int i = 0;
-	int x = 0;
-	cout << "Studio yang menampilkan :" << endl;
-    for(int i = 0;i < STUDIO;i++){
-        if(arrStudio[i].namaFilm == index->info.namaFilm){
-            cout << "Studio" << i+1 << endl;
-            iStudio[x] = i;
-        }
-    }
-    cout << "Pilih(1-"<<STUDIO<<"):";
-    cin >> pilihStudio;
+
 	do{
-		layar(arrStudio[pilihStudio]);
+		layar(arrStudio[pilihStudio - 1]);
 		cout << "Pilih Tipe(BIASA/VIP) :";
 		cin >> tipe;
 		transform(tipe.begin(), tipe.end(),tipe.begin(), ::toupper);//toupper string
@@ -318,20 +309,26 @@ void input(Studio *arrStudio)
 	}while(true);
 
 	do{
-		layar(arrStudio[film - 1]);
+		layar(arrStudio[pilihStudio - 1]);
 		cout << "Pilih Kursi :";
 		cin >> bangku;
-		cek = check(bangku);
-		if(cek != "OK"){
-			cout << cek;
-			getch();
-			system("cls");
+		if(tipe == "BIASA"){
+			cek = check(bangku);
+			if(cek != "OK"){
+				cout << cek;
+				getch();
+				system("cls");
+			} else {
+				arrStudio[pilihStudio-1].kursi[(int)bangku[1] - 49][(int)bangku[0] - 64] = '$';
+				arrStudio[pilihStudio-1].sisaBangku--;
+				arrStudio[pilihStudio-1].terjual++;
+				system("cls");
+				cout << "Berhasil!";
+				getch();
+				break;
+			}
 		} else {
-			arrStudio[film-1].kursi[(int)bangku[1] - 49][(int)bangku[0] - 64] = "$";
-			arrStudio[film-1].sisaBangku--;
-			arrStudio[film-1].terjual++;
-			system("cls");
-			break;
+			
 		}
 	}while(true);
 
