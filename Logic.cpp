@@ -170,7 +170,7 @@ void inputFilm(){
 
 	}while(true);
 
-	do{     //looping untuk var menit
+	do{     //looping untuk penginputan var menit
 		cout << "Masukkan Durasi Menit Film :";
 		cin >> tempF.menitFilm;
 		tempM = stoi(tempF.menitFilm);      //subvar menitFilm diubah ke dalam integer dan di assign ke variabel tempM menggunakan stoi
@@ -197,8 +197,6 @@ void saveToFileStudio(Studio *arrStudio){
         if(!arrStudio[i].namaFilm.empty()){
             strDurasiJam = to_string(arrStudio[i].jamFilm);
             strDurasiMenit = to_string(arrStudio[i].menitFilm);
-      //      jam << arrStudio[i].tayang.tm_hour;
-        //    menit << arrStudio[i].tayang.tm_min;
             tempJam = to_string(arrStudio[i].tayang.tm_hour);
             tempMenit = to_string(arrStudio[i].tayang.tm_min);
             cout << strDurasiJam << endl;
@@ -313,13 +311,13 @@ void input(Studio *arrStudio)
 		cout << "Pilih Kursi :";
 		cin >> bangku;
 		if(tipe == "BIASA"){
-			cek = check(bangku);
+			cek = check(bangku,arrStudio[pilihStudio - 1]);
 			if(cek != "OK"){
 				cout << cek;
 				getch();
 				system("cls");
 			} else {
-				arrStudio[pilihStudio-1].kursi[(int)bangku[1] - 49][(int)bangku[0] - 64] = '$';
+				arrStudio[pilihStudio-1].kursi[(int)bangku[1] - 47][(int)bangku[0] - 64] = '$';
 				arrStudio[pilihStudio-1].sisaBangku--;
 				arrStudio[pilihStudio-1].terjual++;
 				system("cls");
@@ -328,13 +326,13 @@ void input(Studio *arrStudio)
 				break;
 			}
 		} else {
-			
+
 		}
 	}while(true);
 
 }
 
-string check(string x)
+string check(string x,Studio arrStudio)
 {
     //Logic untuk memberikan panjang input 2 karakter
     if (x.length() == 2)
@@ -347,7 +345,7 @@ string check(string x)
             if (toupper(x[0]) >= 'A' && toupper(x[0]) <= 'J')
             {
                 //Logic untuk melakukan pengecekan inputan masih dalam tempat duduk yang tersedia
-                if (bangku[(int)(x[1]) - 48 + 1][(int)(toupper(x[0])) - 64] == "*")
+                if (arrStudio.kursi[(int)(x[1]) - 47][(int)(toupper(x[0])) - 64] == "*")
                 {
                     return "OK";
                 }
@@ -383,3 +381,5 @@ void beforeExit(Studio *arrStudio)
     delete film;
     exit(1);
 }
+
+

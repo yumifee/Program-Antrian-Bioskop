@@ -35,7 +35,7 @@ void displayJadwal(Studio *arrStudio);
 void layar(Studio studio);
 void input(Studio *arrStudio);
 void beforeExit(Studio *arrStudio);
-string check(string x);
+string check(string x,Studio arrStudio);
 bool is_empty(std::ifstream& pFile);
 void saveToFile();
 void saveToFileStudio(Studio *arrStudio);

@@ -17,6 +17,7 @@
 		<Unit filename="Logic.cpp" />
 		<Unit filename="Logic.h" />
 		<Unit filename="bioskop.cpp" />
+		<Unit filename="menu.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

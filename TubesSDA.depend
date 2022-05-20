@@ -55,7 +55,7 @@
 
 1652926426 source:d:\tugas smt2\sda\sda tubes\source code\bioskop.cpp
 
-1652924361 d:\tugas smt2\sda\sda tubes\source code\logic.h
+1652931161 d:\tugas smt2\sda\sda tubes\source code\logic.h
 	<iostream>
 	"List.h"
 	<iomanip>
@@ -76,7 +76,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1652928836 source:d:\tugas smt2\sda\sda tubes\source code\logic.cpp
+1652933865 source:d:\tugas smt2\sda\sda tubes\source code\logic.cpp
 	"Logic.h"
 
 1652926739 source:d:\tugas smt2\sda\sda tubes\source code\menu.cpp
