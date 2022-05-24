@@ -82,3 +82,61 @@
 1652926739 source:d:\tugas smt2\sda\sda tubes\source code\menu.cpp
 	"Logic.h"
 
+1653020438 source:e:\tugas yumi\sda\tubes sda\tubessda-main\bioskop.cpp
+
+1653020438 source:e:\tugas yumi\sda\tubes sda\tubessda-main\list.cpp
+	"List.h"
+	<stdio.h>
+	<stdlib.h>
+
+1653020438 e:\tugas yumi\sda\tubes sda\tubessda-main\list.h
+	<stdio.h>
+	<iostream>
+	"Logic.h"
+
+1653020438 e:\tugas yumi\sda\tubes sda\tubessda-main\logic.h
+	<iostream>
+	"List.h"
+	<iomanip>
+	<string>
+	<algorithm>
+	<conio.h>
+	<stdlib.h>
+	<fstream>
+	<ctime>
+
+1653020438 source:e:\tugas yumi\sda\tubes sda\tubessda-main\logic.cpp
+	"Logic.h"
+
+1653319920 source:e:\tugas yumi\sda\tubes sda\tubessda-main\menu.cpp
+	"Logic.h"
+
+1653020438 source:e:\tugas yumi\sda\tubes sda\tubessda\bioskop.cpp
+
+1653020438 source:e:\tugas yumi\sda\tubes sda\tubessda\list.cpp
+	"List.h"
+	<stdio.h>
+	<stdlib.h>
+
+1653020438 e:\tugas yumi\sda\tubes sda\tubessda\list.h
+	<stdio.h>
+	<iostream>
+	"Logic.h"
+
+1653396273 e:\tugas yumi\sda\tubes sda\tubessda\logic.h
+	<iostream>
+	"List.h"
+	<iomanip>
+	<string>
+	<algorithm>
+	<conio.h>
+	<stdlib.h>
+	<fstream>
+	<ctime>
+
+1653319920 source:e:\tugas yumi\sda\tubes sda\tubessda\menu.cpp
+	"Logic.h"
+
+1653396727 source:e:\tugas yumi\sda\tubes sda\tubessda\logic.cpp
+	"Logic.h"
+

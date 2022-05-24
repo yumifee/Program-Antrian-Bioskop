@@ -15,7 +15,7 @@ string bangku[ROW][COL]{
     {"6", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*"},
     {"7", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*"},
     {"8", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*"},
-    {"9", "$", "$", "$", "$", "$", "$", "$", "$", "$", "$"},
+    {"9", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*"},
 };
 string *film;
 List listFilm;
@@ -248,7 +248,7 @@ void layar(Studio studio)
         if (i == 0)
         {
             cout << endl;
-            cout << "\t\t (======================== Available Seat ========================) " << endl;
+            cout << "\t\t (======================== Layar Disini ========================) " << endl;
             cout << endl;
         }
         //jika i sudah masuk ke bilangan 10 / 9 ( dalanm array ) program akan menampilkan " Sweetbox "
@@ -269,7 +269,7 @@ void layar(Studio studio)
 // Memberikan logic pada function input()
 void input(Studio *arrStudio)
 {
-	int film,pilih,jumlahF,pilihStudio;
+	int film,pilih,jumlahF,pilihStudio,harga,jml_tiket,total,kursiPesan;
 	int iStudio[STUDIO];
 	address index = Point(listFilm);
 	string tipe,bangku,cek;
@@ -307,32 +307,74 @@ void input(Studio *arrStudio)
 	}while(true);
 
 	do{
+        layar(arrStudio[pilihStudio - 1]);
+        if(tipe == "BIASA"){
+            harga = 35000;
+            cout << "Jumlah tiket : ";
+            cin>> jml_tiket;
+            total += harga * jml_tiket;
+            cout << jml_tiket<<" "<< tipe;
+            cout<< " Rp. " << harga * jml_tiket <<endl;
+            getch();
+            break;
+        } else {
+            harga = 50000;
+            cout << "Jumlah Tiket : ";
+            cin>> jml_tiket;
+            total += harga * jml_tiket;
+            cout << jml_tiket<<" "<< tipe;
+            cout<< " Rp. " << harga * jml_tiket <<endl;
+            getch();
+            break;
+        }
+
+	}while(true);
+    kursiPesan = 0;
+	do{
 		layar(arrStudio[pilihStudio - 1]);
 		cout << "Pilih Kursi :";
 		cin >> bangku;
 		if(tipe == "BIASA"){
-			cek = check(bangku,arrStudio[pilihStudio - 1]);
+			cek = check(bangku,arrStudio[pilihStudio - 1],tipe);
+			kursiPesan++;
 			if(cek != "OK"){
 				cout << cek;
 				getch();
 				system("cls");
 			} else {
+			    }
 				arrStudio[pilihStudio-1].kursi[(int)bangku[1] - 47][(int)bangku[0] - 64] = '$';
 				arrStudio[pilihStudio-1].sisaBangku--;
 				arrStudio[pilihStudio-1].terjual++;
-				system("cls");
-				cout << "Berhasil!";
+				if (kursiPesan == jml_tiket){
+                    getch();
+                    break;
+				}
+		} else if(tipe == "VIP"){
+            cek = check(bangku,arrStudio[pilihStudio - 1],tipe);
+            kursiPesan++;
+			if(cek != "OK"){
+				cout << cek;
 				getch();
-				break;
-			}
-		} else {
+				system("cls");
+            } else {
+				arrStudio[pilihStudio-1].kursi[(int)bangku[1] - 47][(int)bangku[0] - 64] = '$';
+				arrStudio[pilihStudio-1].sisaBangku--;
+				arrStudio[pilihStudio-1].terjual++;
+				if (kursiPesan == jml_tiket){
+                    getch();
+                    break;
+			    }
+				}
 
 		}
 	}while(true);
-
+    cout << "Total Harga Tiket yang Harus Dibayar : Rp. " << total <<endl;
 }
 
-string check(string x,Studio arrStudio)
+
+
+string check(string x,Studio arrStudio,string tipe)
 {
     //Logic untuk memberikan panjang input 2 karakter
     if (x.length() == 2)
@@ -340,6 +382,11 @@ string check(string x,Studio arrStudio)
         // Logic untuk melakukan pengecekan format yang dimasukan benar atau salah
         int sementara = toupper(x[0]);
         int simpan = x[1];
+        if(tipe == "BIASA"){
+            if(simpan == 57){
+                return "Khusus VIP";
+            }
+
         if ((sementara >= 65 && sementara <= 90) && (simpan >= 48 && simpan <= 57))
         {
             if (toupper(x[0]) >= 'A' && toupper(x[0]) <= 'J')
@@ -363,10 +410,38 @@ string check(string x,Studio arrStudio)
         {
             return "Masukan format yang benar";
         }
-    }
+    } else if (tipe == "VIP") {
+            if(simpan != 57){
+                return "Tempat duduk Biasa";
+            }
+             if ((sementara >= 65 && sementara <= 90) && (simpan >= 48 && simpan <= 57))
+        {
+            if (toupper(x[0]) >= 'A' && toupper(x[0]) <= 'J')
+            {
+                //Logic untuk melakukan pengecekan inputan masih dalam tempat duduk yang tersedia
+                if (arrStudio.kursi[(int)(x[1]) - 47][(int)(toupper(x[0])) - 64] == "*")
+                {
+                    return "OK";
+                }
+                else
+                {
+                    return "Tempat duduk sudah dibooking! silahkan pilih yang lain";
+                }
+            }
+            else
+            {
+                return "Pastikan memilih tempat duduk dibarisan A sampai J";
+            }
+        }
+        else
+        {
+            return "Masukan format yang benar";
+        }
+        }
     else
     {
         return "Nama Bangku Hanya Bisa 2 Karakter! contoh : B2 ";
+    }
     }
 }
 //menambahkan pesan "Terima Kasih" Jika function exit dieksekusi dan menyelesaikan program
