@@ -111,19 +111,19 @@
 1653319920 source:e:\tugas yumi\sda\tubes sda\tubessda-main\menu.cpp
 	"Logic.h"
 
-1653020438 source:e:\tugas yumi\sda\tubes sda\tubessda\bioskop.cpp
+1653567191 source:e:\tugas yumi\sda\tubes sda\tubessda\bioskop.cpp
 
-1653020438 source:e:\tugas yumi\sda\tubes sda\tubessda\list.cpp
+1653567853 source:e:\tugas yumi\sda\tubes sda\tubessda\list.cpp
 	"List.h"
 	<stdio.h>
 	<stdlib.h>
 
-1653020438 e:\tugas yumi\sda\tubes sda\tubessda\list.h
+1653568214 e:\tugas yumi\sda\tubes sda\tubessda\list.h
 	<stdio.h>
 	<iostream>
 	"Logic.h"
 
-1653396273 e:\tugas yumi\sda\tubes sda\tubessda\logic.h
+1653567148 e:\tugas yumi\sda\tubes sda\tubessda\logic.h
 	<iostream>
 	"List.h"
 	<iomanip>
@@ -134,9 +134,15 @@
 	<fstream>
 	<ctime>
 
-1653319920 source:e:\tugas yumi\sda\tubes sda\tubessda\menu.cpp
+1653574816 source:e:\tugas yumi\sda\tubes sda\tubessda\menu.cpp
 	"Logic.h"
 
-1653396727 source:e:\tugas yumi\sda\tubes sda\tubessda\logic.cpp
+1653567404 source:e:\tugas yumi\sda\tubes sda\tubessda\logic.cpp
+	"Logic.h"
+
+1653567237 source:e:\tugas yumi\sda\tubes sda\tubessda\cobahehe.cpp
+	"Logic.h"
+
+1653574853 source:e:\tugas yumi\sda\tubes sda\tubessda\welcome.cpp
 	"Logic.h"
 

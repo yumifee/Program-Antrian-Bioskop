@@ -14,10 +14,9 @@
 		</Build>
 		<Unit filename="List.cpp" />
 		<Unit filename="List.h" />
-		<Unit filename="Logic.cpp" />
 		<Unit filename="Logic.h" />
-		<Unit filename="bioskop.cpp" />
 		<Unit filename="menu.cpp" />
+		<Unit filename="welcome.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
