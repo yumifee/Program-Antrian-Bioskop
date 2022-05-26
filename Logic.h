@@ -16,6 +16,11 @@ using namespace std;
 #define COL 11
 #define STUDIO 3
 #define TFILM 3
+#define hargaBiasa 35000
+#define hargaVIP 50000
+#define MAXTIKET (ROW-1)*(COL-1)*STUDIO
+
+
 typedef struct tm Jadwal;
 typedef struct {
 	int sisaBangku;

@@ -1,9 +1,5 @@
 #include "Logic.h"
 
-
-// membuat varibel bertipe data int (Integer )
-
-//membuat output list tempat duduk yang masih tersedia dan tidak menggunakan array
 string bangku[ROW][COL]{
     {"-", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"},
     {"0", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*"},
@@ -17,15 +13,17 @@ string bangku[ROW][COL]{
     {"8", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*"},
     {"9", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*"},
 };
-string *film;
+
+int totTerjual;
 List listFilm;
 
 void init(Studio * &arrStudio){
 	arrStudio = new Studio[STUDIO];
+	totTerjual = 0;
 //	CreateList(&listFilm);
     string strDurasiJam,strDurasiMenit,tempJam,tempMenit,strIndex;
     int i;
-//    stringstream jam,menit;
+//  stringstream jam,menit;
 	fstream fileFilm("listFilm.txt",fstream::out|fstream::in);
 	fstream fileStudio("arrStudio.txt",fstream::out|fstream::in);
 	infotype temp;
@@ -146,7 +144,6 @@ void setJadwal(Studio *arrStudio){
 	arrStudio[pilihStudio - 1].namaFilm = index->info.namaFilm;
 }
 
-
 void inputFilm(){
 
 	infotype tempF;     //struct Film (detail ada pada list..h)
@@ -229,16 +226,16 @@ void displayFilm(){
 	PrintInfo(listFilm);
 }
 void displayJadwal(Studio *arrStudio){
-        cout << "ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»" << endl;
+        cout << "æµœæ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜èž" << endl;
 		cout << "                     Jadwal Film                    " << endl;
-		cout << "ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼" << endl;
-        cout << "ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»" << endl;
+		cout << "è—©æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜å¤•" << endl;
+        cout << "æµœæ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜èž" << endl;
     for(int i = 0; i < STUDIO; i++){
 
         cout << setw(6) << right << "   Studio" << i+1 <<":" << endl << "\t " << setw(30) << left << arrStudio[i].namaFilm << arrStudio[i].tayang.tm_hour << ":" << arrStudio[i].tayang.tm_min <<setw(10)<< right << endl;
-    }   cout << "ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼" << endl;
+    }   cout << "è—©æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜æ§˜å¤•" << endl;
 }
-// Memberikan logic pada function layar()
+
 void layar(Studio studio)
 {
     cout << "\n\n";
@@ -251,7 +248,7 @@ void layar(Studio studio)
             cout << "\t\t (======================== Layar Disini ========================) " << endl;
             cout << endl;
         }
-        //jika i sudah masuk ke bilangan 10 / 9 ( dalanm array ) program akan menampilkan " Sweetbox "
+
         if (i == 10)
         {
             cout << endl;
@@ -266,13 +263,13 @@ void layar(Studio studio)
     }
     cout << endl << "\t\t\t\t\t* = Kosong, $ = Terisi" << endl;
 }
-// Memberikan logic pada function input()
+
 void input(Studio *arrStudio)
 {
-	int film,pilih,jumlahF,pilihStudio,harga,jml_tiket,total,kursiPesan;
+	int film,pilih,jumlahF,pilihStudio,jml_tiket,total,kursiPesan;
 	int iStudio[STUDIO];
 	address index = Point(listFilm);
-	string tipe,bangku,cek;
+	string tipe,bangku,cek,pemesan;
 
 	jumlahF = CountList(listFilm);
 	do{
@@ -293,7 +290,13 @@ void input(Studio *arrStudio)
 	}while(true);
 
 	do{
-		layar(arrStudio[pilihStudio - 1]);
+        cout << "Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»" << endl;
+		cout << "Âº                    Harga Tiket                   Âº" << endl;
+		cout << "ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼" << endl;
+		cout << "Ã‰ÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ»" << endl;
+		cout << "Âº              BIASA : "<< hargaBiasa << "         Âº" << endl;
+		cout << "Âº              VIP   : " << hargaVIP << "          Âº" << endl;
+        cout << "ÃˆÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃÂ¼" << endl;
 		cout << "Pilih Tipe(BIASA/VIP) :";
 		cin >> tipe;
 		transform(tipe.begin(), tipe.end(),tipe.begin(), ::toupper);//toupper string
@@ -309,21 +312,19 @@ void input(Studio *arrStudio)
 	do{
         layar(arrStudio[pilihStudio - 1]);
         if(tipe == "BIASA"){
-            harga = 35000;
             cout << "Jumlah tiket : ";
             cin>> jml_tiket;
-            total += harga * jml_tiket;
+            total += hargaBiasa * jml_tiket;
             cout << jml_tiket<<" "<< tipe;
-            cout<< " Rp. " << harga * jml_tiket <<endl;
+            cout<< " Rp. " << hargaBiasa * jml_tiket <<endl;
             getch();
             break;
         } else {
-            harga = 50000;
             cout << "Jumlah Tiket : ";
             cin>> jml_tiket;
-            total += harga * jml_tiket;
+            total += hargaVIP * jml_tiket;
             cout << jml_tiket<<" "<< tipe;
-            cout<< " Rp. " << harga * jml_tiket <<endl;
+            cout<< " Rp. " << hargaVIP * jml_tiket <<endl;
             getch();
             break;
         }
@@ -331,47 +332,48 @@ void input(Studio *arrStudio)
 	}while(true);
     kursiPesan = 0;
 	do{
+        system("cls");
 		layar(arrStudio[pilihStudio - 1]);
 		cout << "Pilih Kursi :";
 		cin >> bangku;
 		if(tipe == "BIASA"){
 			cek = check(bangku,arrStudio[pilihStudio - 1],tipe);
-			kursiPesan++;
 			if(cek != "OK"){
 				cout << cek;
 				getch();
 				system("cls");
 			} else {
-			    }
+
 				arrStudio[pilihStudio-1].kursi[(int)bangku[1] - 47][(int)bangku[0] - 64] = '$';
 				arrStudio[pilihStudio-1].sisaBangku--;
 				arrStudio[pilihStudio-1].terjual++;
-				if (kursiPesan == jml_tiket){
+				if (kursiPesan == jml_tiket-1){
                     getch();
                     break;
 				}
+			}
 		} else if(tipe == "VIP"){
             cek = check(bangku,arrStudio[pilihStudio - 1],tipe);
-            kursiPesan++;
 			if(cek != "OK"){
 				cout << cek;
 				getch();
 				system("cls");
             } else {
+
 				arrStudio[pilihStudio-1].kursi[(int)bangku[1] - 47][(int)bangku[0] - 64] = '$';
 				arrStudio[pilihStudio-1].sisaBangku--;
 				arrStudio[pilihStudio-1].terjual++;
-				if (kursiPesan == jml_tiket){
+				if (kursiPesan == jml_tiket-1){
                     getch();
                     break;
 			    }
-				}
-
+            }
 		}
+		kursiPesan++;
 	}while(true);
     cout << "Total Harga Tiket yang Harus Dibayar : Rp. " << total <<endl;
-}
 
+}
 
 
 string check(string x,Studio arrStudio,string tipe)
@@ -444,16 +446,14 @@ string check(string x,Studio arrStudio,string tipe)
     }
     }
 }
-//menambahkan pesan "Terima Kasih" Jika function exit dieksekusi dan menyelesaikan program
+
 void beforeExit(Studio *arrStudio)
 {
 	saveToFile();
 	saveToFileStudio(arrStudio);
 	DelAll(&listFilm);
     cout << "\n\n Terima kasih!.";
-    cout << endl
-         << endl;
-    delete film;
+    cout << endl << endl;
     exit(1);
 }
 

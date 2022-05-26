@@ -51,7 +51,6 @@ int main (){
 			case 6:
 			  	beforeExit(arrStudio);
 			   	break;
-
 			default:
                 cout << "Menu tidak ditemukan";
 			    break;

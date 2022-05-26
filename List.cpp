@@ -118,7 +118,6 @@ void InsVLast (List * L, infotype X){
 
 }
 
-
 void DelVFirst (List * L, infotype * X){
 	address temp;
 
