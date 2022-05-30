@@ -3,7 +3,7 @@ Nama : Panji Judha Fadhilla & Yumi Febriana
 NIM : 211511053 & 211511063
 Kelas : 1B
 Tanggal : 8/03/2022
- */
+*/
 #include "List.h"
 #include <stdio.h>
 #include <stdlib.h>
