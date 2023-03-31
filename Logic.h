@@ -12,8 +12,8 @@
 
 using namespace std;
 
-#define ROW 11
-#define COL 11
+#define ROW 12
+#define COL 12
 #define STUDIO 3
 #define TFILM 3
 #define hargaBiasa 35000

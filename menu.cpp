@@ -327,7 +327,7 @@ void layar(Studio studio)
 
 void input(Studio *arrStudio)
 {
-    int film,pilih,jumlahF,pilihStudio,jml_tiket,total,kursiPesan;
+    int film,pilih,jumlahF,pilihStudio,jml_tiket,total,kursiPesan,countKursi;
     int iStudio[STUDIO];
     address index = Point(listFilm);
     string tipe,bangku,cek,pemesan;
@@ -344,11 +344,12 @@ void input(Studio *arrStudio)
             getch();
             system("cls");
         }
-        else if(arrStudio[pilihStudio - 1].namaFilm.empty())
+        else if(arrStudio[pilihStudio - 1].namaFilm.empty()||arrStudio[pilihStudio-1].sisaBangku == 0)
         {
             cout << "Studio Belum Menampilkan Film!";
             getch();
             system("cls");
+            return;
         }
         else
         {
@@ -369,15 +370,33 @@ void input(Studio *arrStudio)
         cout << "Pilih Tipe(BIASA/VIP) :";
         cin >> tipe;
         transform(tipe.begin(), tipe.end(),tipe.begin(), ::toupper);//toupper string
+        countKursi = 0;
         if(tipe == "VIP" || tipe == "BIASA")
         {
+            if(tipe == "VIP"){
+                for(int i = 1; i < COL; i++){
+                    if(arrStudio[pilihStudio-1].kursi[10][i] == "$"){
+                        countKursi++;
+                    }
+            }
+            cout << countKursi;
+            getch();
+            if(countKursi == 10){
+                    cout <<"VIP PENUH";
+                    return;
+            }
             break;
+            }
+            if(tipe == "BIASA"){
+                break;
+            }
         }
         else
         {
             cout << "Input Tidak Sesuai!";
             getch();
         }
+        countKursi = 0;
         system("cls");
     }
     while(true);
@@ -399,15 +418,21 @@ void input(Studio *arrStudio)
         }
         else
         {
-            cout << "Jumlah Tiket : ";
+            cout << endl << "Jumlah Tiket : ";
             cin>> jml_tiket;
+           if(tipe == "VIP" && jml_tiket > 10){
+                cout << "VIP HANYA ADA 10 KURSI";
+                return;
+            }
+            else
+            {
             total += hargaVIP * jml_tiket;
             cout << jml_tiket<<" "<< tipe;
             cout<< " Rp. " << hargaVIP * jml_tiket <<endl;
             getch();
             break;
+           }
         }
-
     }
     while(true);
     kursiPesan = 0;
@@ -428,7 +453,6 @@ void input(Studio *arrStudio)
             }
             else
             {
-
                 arrStudio[pilihStudio-1].kursi[(int)bangku[1] - 47][(int)bangku[0] - 64] = '$';
                 arrStudio[pilihStudio-1].sisaBangku--;
                 arrStudio[pilihStudio-1].terjual++;
@@ -476,17 +500,17 @@ string check(string x,Studio arrStudio,string tipe)
     {
         // Logic untuk melakukan pengecekan format yang dimasukan benar atau salah
         int sementara = toupper(x[0]);
-        int simpan = x[1];
+        int simpan = x[1];      // menampung index kedua dari string x
         if(tipe == "BIASA")
         {
-            if(simpan == 57)
+            if(simpan == 57)        //ascii 9
             {
                 return "Khusus VIP";
             }
 
-            if ((sementara >= 65 && sementara <= 90) && (simpan >= 48 && simpan <= 57))
+            if ((sementara >= 65 && sementara <= 90) && (simpan >= 48 && simpan <= 57))     //
             {
-                if (toupper(x[0]) >= 'A' && toupper(x[0]) <= 'J')
+                if (toupper(x[0]) >= 'A' && toupper(x[0]) <= 'J')       //
                 {
                     //Logic untuk melakukan pengecekan inputan masih dalam tempat duduk yang tersedia
                     if (arrStudio.kursi[(int)(x[1]) - 47][(int)(toupper(x[0])) - 64] == "*")
